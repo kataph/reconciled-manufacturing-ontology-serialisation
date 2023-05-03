@@ -1,0 +1,982 @@
+============================== Mace4 =================================
+Mace4 (64) version 2009-11A, November 2009.
+Process 747 was started by user on LAPTOP-M1OUG4M1,
+Wed May  3 16:56:23 2023
+The command was "/home/user/Downloads/mace4 -v0 -t300 -s60 -n2 -N40 -f /home/user/Downloads/macleod/conversions/test_nontrivial.p9".
+============================== end of head ===========================
+
+============================== INPUT =================================
+
+% Reading from file /home/user/Downloads/macleod/conversions/test_nontrivial.p9
+
+
+formulas(sos).
+(all x all y (US(x,y) -> CN(x) & DS(y))).
+(all x all y (DF(x,y) -> US(x,y))).
+(all x (DS(x) -> (exists y US(y,x)))).
+(all x (CN(x) -> (exists y (DF(x,y) & (all z (DF(x,z) -> y = z)))))).
+(all x (StateDescr(x) <-> (all y all t (CF(y,x,t) -> ST(y))))).
+(all x all y (hasGoal(x,y) <-> Plan(x) & StateDescr(y) & CP(y,x) & (exists z goalForAgents(y,z)) & (all o exists s (occOf(o,x) -> CF(s,y,EndOf(o)))))).
+(all x all y (hasCapabReq(x,y) <-> hasReq(x,y) & (all z all t (CF(z,y,t) -> Capability(z))) & (all o (occOf(o,x) -> (exists w exists z exists t (PC(w,o,t) & I(z,w,t) & CF(z,y,t))))))).
+(all x (CapabReq(x) <-> (exists y hasCapabReq(y,x)))).
+(all x all y (hasInputReq(x,y) <-> hasReq(x,y) & TechSpec(y) & (all o exists z (occOf(o,x) -> CF(z,y,StartOf(o)))))).
+(all x all y all z (hasOutputReq(x,y,z) <-> hasGoal(x,z) & TechSpec(y) & CP(y,x) & (all o exists s exists p (occOf(o,x) -> CF(p,y,EndOf(o)) & CF(s,z,EndOf(o)) & PC(p,s,EndOf(o)))))).
+(all a (PrcPlan(a) <-> (exists y exists z exists w exists v (hasInputReq(a,y) & hasCapabReq(a,v) & hasOutputReq(a,z,w))))).
+(all r all a all t (resourceFor(r,a,t) <-> PED(r) & PrcPlan(a) & (exists x exists y (hasCapabReq(a,x) & CF(y,x,t) & I(y,r,t))))).
+(all x all y all t (actualResFor(x,y,t) -> resourceFor(x,y,t))).
+(all x (Capability(x) -> PQ(x) | AQ(x))).
+(all x ((Plan(x) | TechSpec(x) | CapabReq(x) -> DS(x)) & (DS(x) -> NASO(x)) & (MethodEng(x) -> Plan(x)) & (PrcPlan(x) -> Plan(x)) & (FnctEng(x) -> CN(x)))).
+(all x (FnctEng(x) -> (exists y (MethodEng(y) & DF(x,y))))).
+(all x (MethodEng(x) -> (exists y (FnctEng(y) & US(x,y))))).
+(all x (MethodEng(x) -> (exists y hasGoal(x,y)))).
+(exists var1 CapabReq(var1)).
+(exists var2 -CapabReq(var2)).
+(exists var3 exists var4 (US(var3,var4) & var3 != var4)).
+(exists var5 exists var6 (-US(var5,var6) & var5 != var6)).
+(exists var7 ST(var7)).
+(exists var8 -ST(var8)).
+(exists var9 Capability(var9)).
+(exists var10 -Capability(var10)).
+(exists var11 CN(var11)).
+(exists var12 -CN(var12)).
+(exists var13 exists var14 (CP(var13,var14) & var13 != var14)).
+(exists var15 exists var16 (-CP(var15,var16) & var15 != var16)).
+(exists var17 exists var18 (hasReq(var17,var18) & var17 != var18)).
+(exists var19 exists var20 (-hasReq(var19,var20) & var19 != var20)).
+(exists var21 MethodEng(var21)).
+(exists var22 -MethodEng(var22)).
+(exists var23 exists var24 exists var25 (hasOutputReq(var23,var24,var25) & var23 != var24 & var23 != var25 & var24 != var25)).
+(exists var26 exists var27 exists var28 (-hasOutputReq(var26,var27,var28) & var26 != var27 & var26 != var28 & var27 != var28)).
+(exists var29 NASO(var29)).
+(exists var30 -NASO(var30)).
+(exists var31 exists var32 exists var33 (PC(var31,var32,var33) & var31 != var32 & var31 != var33 & var32 != var33)).
+(exists var34 exists var35 exists var36 (-PC(var34,var35,var36) & var34 != var35 & var34 != var36 & var35 != var36)).
+(exists var37 exists var38 (goalForAgents(var37,var38) & var37 != var38)).
+(exists var39 exists var40 (-goalForAgents(var39,var40) & var39 != var40)).
+(exists var41 AQ(var41)).
+(exists var42 -AQ(var42)).
+(exists var43 exists var44 exists var45 (resourceFor(var43,var44,var45) & var43 != var44 & var43 != var45 & var44 != var45)).
+(exists var46 exists var47 exists var48 (-resourceFor(var46,var47,var48) & var46 != var47 & var46 != var48 & var47 != var48)).
+(exists var49 FnctEng(var49)).
+(exists var50 -FnctEng(var50)).
+(exists var51 exists var52 (occOf(var51,var52) & var51 != var52)).
+(exists var53 exists var54 (-occOf(var53,var54) & var53 != var54)).
+(exists var55 PrcPlan(var55)).
+(exists var56 -PrcPlan(var56)).
+(exists var57 PQ(var57)).
+(exists var58 -PQ(var58)).
+(exists var59 Plan(var59)).
+(exists var60 -Plan(var60)).
+(exists var61 exists var62 (hasCapabReq(var61,var62) & var61 != var62)).
+(exists var63 exists var64 (-hasCapabReq(var63,var64) & var63 != var64)).
+(exists var65 exists var66 exists var67 (actualResFor(var65,var66,var67) & var65 != var66 & var65 != var67 & var66 != var67)).
+(exists var68 exists var69 exists var70 (-actualResFor(var68,var69,var70) & var68 != var69 & var68 != var70 & var69 != var70)).
+(exists var71 exists var72 (hasGoal(var71,var72) & var71 != var72)).
+(exists var73 exists var74 (-hasGoal(var73,var74) & var73 != var74)).
+(exists var75 exists var76 (DF(var75,var76) & var75 != var76)).
+(exists var77 exists var78 (-DF(var77,var78) & var77 != var78)).
+(exists var79 DS(var79)).
+(exists var80 -DS(var80)).
+(exists var81 TechSpec(var81)).
+(exists var82 -TechSpec(var82)).
+(exists var83 exists var84 exists var85 (I(var83,var84,var85) & var83 != var84 & var83 != var85 & var84 != var85)).
+(exists var86 exists var87 exists var88 (-I(var86,var87,var88) & var86 != var87 & var86 != var88 & var87 != var88)).
+(exists var89 exists var90 exists var91 (CF(var89,var90,var91) & var89 != var90 & var89 != var91 & var90 != var91)).
+(exists var92 exists var93 exists var94 (-CF(var92,var93,var94) & var92 != var93 & var92 != var94 & var93 != var94)).
+(exists var95 StateDescr(var95)).
+(exists var96 -StateDescr(var96)).
+(exists var97 exists var98 (hasInputReq(var97,var98) & var97 != var98)).
+(exists var99 exists var100 (-hasInputReq(var99,var100) & var99 != var100)).
+(exists var101 PED(var101)).
+(exists var102 -PED(var102)).
+end_of_list.
+
+% From the command line: clear(verbose).
+
+% From the command line: assign(max_seconds, 300).
+
+% From the command line: assign(max_seconds_per, 60).
+    % assign(domain_size, 2) -> assign(start_size, 2).
+    % assign(domain_size, 2) -> assign(end_size, 2).
+
+% From the command line: assign(domain_size, 2).
+
+% From the command line: assign(end_size, 40).
+
+============================== end of input ==========================
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+1 (all x all y (US(x,y) -> CN(x) & DS(y))) # label(non_clause).  [assumption].
+2 (all x all y (DF(x,y) -> US(x,y))) # label(non_clause).  [assumption].
+3 (all x (DS(x) -> (exists y US(y,x)))) # label(non_clause).  [assumption].
+4 (all x (CN(x) -> (exists y (DF(x,y) & (all z (DF(x,z) -> y = z)))))) # label(non_clause).  [assumption].
+5 (all x (StateDescr(x) <-> (all y all t (CF(y,x,t) -> ST(y))))) # label(non_clause).  [assumption].
+6 (all x all y (hasGoal(x,y) <-> Plan(x) & StateDescr(y) & CP(y,x) & (exists z goalForAgents(y,z)) & (all o exists s (occOf(o,x) -> CF(s,y,EndOf(o)))))) # label(non_clause).  [assumption].
+7 (all x all y (hasCapabReq(x,y) <-> hasReq(x,y) & (all z all t (CF(z,y,t) -> Capability(z))) & (all o (occOf(o,x) -> (exists w exists z exists t (PC(w,o,t) & I(z,w,t) & CF(z,y,t))))))) # label(non_clause).  [assumption].
+8 (all x (CapabReq(x) <-> (exists y hasCapabReq(y,x)))) # label(non_clause).  [assumption].
+9 (all x all y (hasInputReq(x,y) <-> hasReq(x,y) & TechSpec(y) & (all o exists z (occOf(o,x) -> CF(z,y,StartOf(o)))))) # label(non_clause).  [assumption].
+10 (all x all y all z (hasOutputReq(x,y,z) <-> hasGoal(x,z) & TechSpec(y) & CP(y,x) & (all o exists s exists p (occOf(o,x) -> CF(p,y,EndOf(o)) & CF(s,z,EndOf(o)) & PC(p,s,EndOf(o)))))) # label(non_clause).  [assumption].
+11 (all a (PrcPlan(a) <-> (exists y exists z exists w exists v (hasInputReq(a,y) & hasCapabReq(a,v) & hasOutputReq(a,z,w))))) # label(non_clause).  [assumption].
+12 (all r all a all t (resourceFor(r,a,t) <-> PED(r) & PrcPlan(a) & (exists x exists y (hasCapabReq(a,x) & CF(y,x,t) & I(y,r,t))))) # label(non_clause).  [assumption].
+13 (all x all y all t (actualResFor(x,y,t) -> resourceFor(x,y,t))) # label(non_clause).  [assumption].
+14 (all x (Capability(x) -> PQ(x) | AQ(x))) # label(non_clause).  [assumption].
+15 (all x ((Plan(x) | TechSpec(x) | CapabReq(x) -> DS(x)) & (DS(x) -> NASO(x)) & (MethodEng(x) -> Plan(x)) & (PrcPlan(x) -> Plan(x)) & (FnctEng(x) -> CN(x)))) # label(non_clause).  [assumption].
+16 (all x (FnctEng(x) -> (exists y (MethodEng(y) & DF(x,y))))) # label(non_clause).  [assumption].
+17 (all x (MethodEng(x) -> (exists y (FnctEng(y) & US(x,y))))) # label(non_clause).  [assumption].
+18 (all x (MethodEng(x) -> (exists y hasGoal(x,y)))) # label(non_clause).  [assumption].
+19 (exists var1 CapabReq(var1)) # label(non_clause).  [assumption].
+20 (exists var2 -CapabReq(var2)) # label(non_clause).  [assumption].
+21 (exists var3 exists var4 (US(var3,var4) & var3 != var4)) # label(non_clause).  [assumption].
+22 (exists var5 exists var6 (-US(var5,var6) & var5 != var6)) # label(non_clause).  [assumption].
+23 (exists var7 ST(var7)) # label(non_clause).  [assumption].
+24 (exists var8 -ST(var8)) # label(non_clause).  [assumption].
+25 (exists var9 Capability(var9)) # label(non_clause).  [assumption].
+26 (exists var10 -Capability(var10)) # label(non_clause).  [assumption].
+27 (exists var11 CN(var11)) # label(non_clause).  [assumption].
+28 (exists var12 -CN(var12)) # label(non_clause).  [assumption].
+29 (exists var13 exists var14 (CP(var13,var14) & var13 != var14)) # label(non_clause).  [assumption].
+30 (exists var15 exists var16 (-CP(var15,var16) & var15 != var16)) # label(non_clause).  [assumption].
+31 (exists var17 exists var18 (hasReq(var17,var18) & var17 != var18)) # label(non_clause).  [assumption].
+32 (exists var19 exists var20 (-hasReq(var19,var20) & var19 != var20)) # label(non_clause).  [assumption].
+33 (exists var21 MethodEng(var21)) # label(non_clause).  [assumption].
+34 (exists var22 -MethodEng(var22)) # label(non_clause).  [assumption].
+35 (exists var23 exists var24 exists var25 (hasOutputReq(var23,var24,var25) & var23 != var24 & var23 != var25 & var24 != var25)) # label(non_clause).  [assumption].
+36 (exists var26 exists var27 exists var28 (-hasOutputReq(var26,var27,var28) & var26 != var27 & var26 != var28 & var27 != var28)) # label(non_clause).  [assumption].
+37 (exists var29 NASO(var29)) # label(non_clause).  [assumption].
+38 (exists var30 -NASO(var30)) # label(non_clause).  [assumption].
+39 (exists var31 exists var32 exists var33 (PC(var31,var32,var33) & var31 != var32 & var31 != var33 & var32 != var33)) # label(non_clause).  [assumption].
+40 (exists var34 exists var35 exists var36 (-PC(var34,var35,var36) & var34 != var35 & var34 != var36 & var35 != var36)) # label(non_clause).  [assumption].
+41 (exists var37 exists var38 (goalForAgents(var37,var38) & var37 != var38)) # label(non_clause).  [assumption].
+42 (exists var39 exists var40 (-goalForAgents(var39,var40) & var39 != var40)) # label(non_clause).  [assumption].
+43 (exists var41 AQ(var41)) # label(non_clause).  [assumption].
+44 (exists var42 -AQ(var42)) # label(non_clause).  [assumption].
+45 (exists var43 exists var44 exists var45 (resourceFor(var43,var44,var45) & var43 != var44 & var43 != var45 & var44 != var45)) # label(non_clause).  [assumption].
+46 (exists var46 exists var47 exists var48 (-resourceFor(var46,var47,var48) & var46 != var47 & var46 != var48 & var47 != var48)) # label(non_clause).  [assumption].
+47 (exists var49 FnctEng(var49)) # label(non_clause).  [assumption].
+48 (exists var50 -FnctEng(var50)) # label(non_clause).  [assumption].
+49 (exists var51 exists var52 (occOf(var51,var52) & var51 != var52)) # label(non_clause).  [assumption].
+50 (exists var53 exists var54 (-occOf(var53,var54) & var53 != var54)) # label(non_clause).  [assumption].
+51 (exists var55 PrcPlan(var55)) # label(non_clause).  [assumption].
+52 (exists var56 -PrcPlan(var56)) # label(non_clause).  [assumption].
+53 (exists var57 PQ(var57)) # label(non_clause).  [assumption].
+54 (exists var58 -PQ(var58)) # label(non_clause).  [assumption].
+55 (exists var59 Plan(var59)) # label(non_clause).  [assumption].
+56 (exists var60 -Plan(var60)) # label(non_clause).  [assumption].
+57 (exists var61 exists var62 (hasCapabReq(var61,var62) & var61 != var62)) # label(non_clause).  [assumption].
+58 (exists var63 exists var64 (-hasCapabReq(var63,var64) & var63 != var64)) # label(non_clause).  [assumption].
+59 (exists var65 exists var66 exists var67 (actualResFor(var65,var66,var67) & var65 != var66 & var65 != var67 & var66 != var67)) # label(non_clause).  [assumption].
+60 (exists var68 exists var69 exists var70 (-actualResFor(var68,var69,var70) & var68 != var69 & var68 != var70 & var69 != var70)) # label(non_clause).  [assumption].
+61 (exists var71 exists var72 (hasGoal(var71,var72) & var71 != var72)) # label(non_clause).  [assumption].
+62 (exists var73 exists var74 (-hasGoal(var73,var74) & var73 != var74)) # label(non_clause).  [assumption].
+63 (exists var75 exists var76 (DF(var75,var76) & var75 != var76)) # label(non_clause).  [assumption].
+64 (exists var77 exists var78 (-DF(var77,var78) & var77 != var78)) # label(non_clause).  [assumption].
+65 (exists var79 DS(var79)) # label(non_clause).  [assumption].
+66 (exists var80 -DS(var80)) # label(non_clause).  [assumption].
+67 (exists var81 TechSpec(var81)) # label(non_clause).  [assumption].
+68 (exists var82 -TechSpec(var82)) # label(non_clause).  [assumption].
+69 (exists var83 exists var84 exists var85 (I(var83,var84,var85) & var83 != var84 & var83 != var85 & var84 != var85)) # label(non_clause).  [assumption].
+70 (exists var86 exists var87 exists var88 (-I(var86,var87,var88) & var86 != var87 & var86 != var88 & var87 != var88)) # label(non_clause).  [assumption].
+71 (exists var89 exists var90 exists var91 (CF(var89,var90,var91) & var89 != var90 & var89 != var91 & var90 != var91)) # label(non_clause).  [assumption].
+72 (exists var92 exists var93 exists var94 (-CF(var92,var93,var94) & var92 != var93 & var92 != var94 & var93 != var94)) # label(non_clause).  [assumption].
+73 (exists var95 StateDescr(var95)) # label(non_clause).  [assumption].
+74 (exists var96 -StateDescr(var96)) # label(non_clause).  [assumption].
+75 (exists var97 exists var98 (hasInputReq(var97,var98) & var97 != var98)) # label(non_clause).  [assumption].
+76 (exists var99 exists var100 (-hasInputReq(var99,var100) & var99 != var100)) # label(non_clause).  [assumption].
+77 (exists var101 PED(var101)) # label(non_clause).  [assumption].
+78 (exists var102 -PED(var102)) # label(non_clause).  [assumption].
+
+============================== end of process non-clausal formulas ===
+
+============================== CLAUSES FOR SEARCH ====================
+
+formulas(mace4_clauses).
+-US(x,y) | CN(x).
+-US(x,y) | DS(y).
+-DF(x,y) | US(x,y).
+-DS(x) | US(f1(x),x).
+-CN(x) | DF(x,f2(x)).
+-CN(x) | -DF(x,y) | y = f2(x).
+-StateDescr(x) | -CF(y,x,z) | ST(y).
+StateDescr(x) | CF(f3(x),x,f4(x)).
+StateDescr(x) | -ST(f3(x)).
+-hasGoal(x,y) | Plan(x).
+-hasGoal(x,y) | StateDescr(y).
+-hasGoal(x,y) | CP(y,x).
+-hasGoal(x,y) | goalForAgents(y,f5(x,y)).
+-hasGoal(x,y) | -occOf(z,x) | CF(f6(x,y,z),y,EndOf(z)).
+hasGoal(x,y) | -Plan(x) | -StateDescr(y) | -CP(y,x) | -goalForAgents(y,z) | occOf(f7(x,y),x).
+hasGoal(x,y) | -Plan(x) | -StateDescr(y) | -CP(y,x) | -goalForAgents(y,z) | -CF(u,y,EndOf(f7(x,y))).
+-hasCapabReq(x,y) | hasReq(x,y).
+-hasCapabReq(x,y) | -CF(z,y,u) | Capability(z).
+-hasCapabReq(x,y) | -occOf(z,x) | PC(f8(x,y,z),z,f10(x,y,z)).
+-hasCapabReq(x,y) | -occOf(z,x) | I(f9(x,y,z),f8(x,y,z),f10(x,y,z)).
+-hasCapabReq(x,y) | -occOf(z,x) | CF(f9(x,y,z),y,f10(x,y,z)).
+hasCapabReq(x,y) | -hasReq(x,y) | CF(f11(x,y),y,f12(x,y)) | occOf(f13(x,y),x).
+hasCapabReq(x,y) | -hasReq(x,y) | CF(f11(x,y),y,f12(x,y)) | -PC(z,f13(x,y),u) | -I(w,z,u) | -CF(w,y,u).
+hasCapabReq(x,y) | -hasReq(x,y) | -Capability(f11(x,y)) | occOf(f13(x,y),x).
+hasCapabReq(x,y) | -hasReq(x,y) | -Capability(f11(x,y)) | -PC(z,f13(x,y),u) | -I(w,z,u) | -CF(w,y,u).
+-CapabReq(x) | hasCapabReq(f14(x),x).
+CapabReq(x) | -hasCapabReq(y,x).
+-hasInputReq(x,y) | hasReq(x,y).
+-hasInputReq(x,y) | TechSpec(y).
+-hasInputReq(x,y) | -occOf(z,x) | CF(f15(x,y,z),y,StartOf(z)).
+hasInputReq(x,y) | -hasReq(x,y) | -TechSpec(y) | occOf(f16(x,y),x).
+hasInputReq(x,y) | -hasReq(x,y) | -TechSpec(y) | -CF(z,y,StartOf(f16(x,y))).
+-hasOutputReq(x,y,z) | hasGoal(x,z).
+-hasOutputReq(x,y,z) | TechSpec(y).
+-hasOutputReq(x,y,z) | CP(y,x).
+-hasOutputReq(x,y,z) | -occOf(u,x) | CF(f18(x,y,z,u),y,EndOf(u)).
+-hasOutputReq(x,y,z) | -occOf(u,x) | CF(f17(x,y,z,u),z,EndOf(u)).
+-hasOutputReq(x,y,z) | -occOf(u,x) | PC(f18(x,y,z,u),f17(x,y,z,u),EndOf(u)).
+hasOutputReq(x,y,z) | -hasGoal(x,z) | -TechSpec(y) | -CP(y,x) | occOf(f19(x,y,z),x).
+hasOutputReq(x,y,z) | -hasGoal(x,z) | -TechSpec(y) | -CP(y,x) | -CF(u,y,EndOf(f19(x,y,z))) | -CF(w,z,EndOf(f19(x,y,z))) | -PC(u,w,EndOf(f19(x,y,z))).
+-PrcPlan(x) | hasInputReq(x,f20(x)).
+-PrcPlan(x) | hasCapabReq(x,f23(x)).
+-PrcPlan(x) | hasOutputReq(x,f21(x),f22(x)).
+PrcPlan(x) | -hasInputReq(x,y) | -hasCapabReq(x,z) | -hasOutputReq(x,u,w).
+-resourceFor(x,y,z) | PED(x).
+-resourceFor(x,y,z) | PrcPlan(y).
+-resourceFor(x,y,z) | hasCapabReq(y,f24(x,y,z)).
+-resourceFor(x,y,z) | CF(f25(x,y,z),f24(x,y,z),z).
+-resourceFor(x,y,z) | I(f25(x,y,z),x,z).
+resourceFor(x,y,z) | -PED(x) | -PrcPlan(y) | -hasCapabReq(y,u) | -CF(w,u,z) | -I(w,x,z).
+-actualResFor(x,y,z) | resourceFor(x,y,z).
+-Capability(x) | PQ(x) | AQ(x).
+-Plan(x) | DS(x).
+-TechSpec(x) | DS(x).
+-CapabReq(x) | DS(x).
+-DS(x) | NASO(x).
+-MethodEng(x) | Plan(x).
+-PrcPlan(x) | Plan(x).
+-FnctEng(x) | CN(x).
+-FnctEng(x) | MethodEng(f26(x)).
+-FnctEng(x) | DF(x,f26(x)).
+-MethodEng(x) | FnctEng(f27(x)).
+-MethodEng(x) | US(x,f27(x)).
+-MethodEng(x) | hasGoal(x,f28(x)).
+CapabReq(c1).
+-CapabReq(c2).
+US(c3,c4).
+c4 != c3.
+-US(c5,c6).
+c6 != c5.
+ST(c7).
+-ST(c8).
+Capability(c9).
+-Capability(c10).
+CN(c11).
+-CN(c12).
+CP(c13,c14).
+c14 != c13.
+-CP(c15,c16).
+c16 != c15.
+hasReq(c17,c18).
+c18 != c17.
+-hasReq(c19,c20).
+c20 != c19.
+MethodEng(c21).
+-MethodEng(c22).
+hasOutputReq(c23,c24,c25).
+c24 != c23.
+c25 != c23.
+c25 != c24.
+-hasOutputReq(c26,c27,c28).
+c27 != c26.
+c28 != c26.
+c28 != c27.
+NASO(c29).
+-NASO(c30).
+PC(c31,c32,c33).
+c32 != c31.
+c33 != c31.
+c33 != c32.
+-PC(c34,c35,c36).
+c35 != c34.
+c36 != c34.
+c36 != c35.
+goalForAgents(c37,c38).
+c38 != c37.
+-goalForAgents(c39,c40).
+c40 != c39.
+AQ(c41).
+-AQ(c42).
+resourceFor(c43,c44,c45).
+c44 != c43.
+c45 != c43.
+c45 != c44.
+-resourceFor(c46,c47,c48).
+c47 != c46.
+c48 != c46.
+c48 != c47.
+FnctEng(c49).
+-FnctEng(c50).
+occOf(c51,c52).
+c52 != c51.
+-occOf(c53,c54).
+c54 != c53.
+PrcPlan(c55).
+-PrcPlan(c56).
+PQ(c57).
+-PQ(c58).
+Plan(c59).
+-Plan(c60).
+hasCapabReq(c61,c62).
+c62 != c61.
+-hasCapabReq(c63,c64).
+c64 != c63.
+actualResFor(c65,c66,c67).
+c66 != c65.
+c67 != c65.
+c67 != c66.
+-actualResFor(c68,c69,c70).
+c69 != c68.
+c70 != c68.
+c70 != c69.
+hasGoal(c71,c72).
+c72 != c71.
+-hasGoal(c73,c74).
+c74 != c73.
+DF(c75,c76).
+c76 != c75.
+-DF(c77,c78).
+c78 != c77.
+DS(c79).
+-DS(c80).
+TechSpec(c81).
+-TechSpec(c82).
+I(c83,c84,c85).
+c84 != c83.
+c85 != c83.
+c85 != c84.
+-I(c86,c87,c88).
+c87 != c86.
+c88 != c86.
+c88 != c87.
+CF(c89,c90,c91).
+c90 != c89.
+c91 != c89.
+c91 != c90.
+-CF(c92,c93,c94).
+c93 != c92.
+c94 != c92.
+c94 != c93.
+StateDescr(c95).
+-StateDescr(c96).
+hasInputReq(c97,c98).
+c98 != c97.
+-hasInputReq(c99,c100).
+c100 != c99.
+PED(c101).
+-PED(c102).
+end_of_list.
+
+============================== end of clauses for search =============
+
+% There are no natural numbers in the input.
+
+============================== DOMAIN SIZE 2 =========================
+
+=== Mace4 starting on domain size 2. ===
+
+============================== STATISTICS ============================
+
+For domain size 2.
+
+Current CPU time: 0.00 seconds (total CPU time: 0.01 seconds).
+Ground clauses: seen=600, kept=600.
+Selections=2, assignments=3, propagations=73, current_models=0.
+Rewrite_terms=31, rewrite_bools=469, indexes=15.
+Rules_from_neg_clauses=24, cross_offs=24.
+
+============================== end of statistics =====================
+
+============================== DOMAIN SIZE 3 =========================
+
+=== Mace4 starting on domain size 3. ===
+
+============================== MODEL =================================
+
+interpretation( 3, [number=1, seconds=0], [
+
+        function(c1, [ 0 ]),
+
+        function(c2, [ 1 ]),
+
+        function(c3, [ 0 ]),
+
+        function(c4, [ 2 ]),
+
+        function(c5, [ 0 ]),
+
+        function(c6, [ 1 ]),
+
+        function(c7, [ 0 ]),
+
+        function(c8, [ 1 ]),
+
+        function(c9, [ 0 ]),
+
+        function(c10, [ 1 ]),
+
+        function(c11, [ 0 ]),
+
+        function(c12, [ 1 ]),
+
+        function(c13, [ 0 ]),
+
+        function(c14, [ 1 ]),
+
+        function(c15, [ 0 ]),
+
+        function(c16, [ 2 ]),
+
+        function(c17, [ 0 ]),
+
+        function(c18, [ 1 ]),
+
+        function(c19, [ 0 ]),
+
+        function(c20, [ 2 ]),
+
+        function(c21, [ 0 ]),
+
+        function(c22, [ 1 ]),
+
+        function(c23, [ 0 ]),
+
+        function(c24, [ 2 ]),
+
+        function(c25, [ 1 ]),
+
+        function(c26, [ 0 ]),
+
+        function(c27, [ 1 ]),
+
+        function(c28, [ 2 ]),
+
+        function(c29, [ 0 ]),
+
+        function(c30, [ 1 ]),
+
+        function(c31, [ 0 ]),
+
+        function(c32, [ 1 ]),
+
+        function(c33, [ 2 ]),
+
+        function(c34, [ 0 ]),
+
+        function(c35, [ 2 ]),
+
+        function(c36, [ 1 ]),
+
+        function(c37, [ 0 ]),
+
+        function(c38, [ 1 ]),
+
+        function(c39, [ 0 ]),
+
+        function(c40, [ 2 ]),
+
+        function(c41, [ 0 ]),
+
+        function(c42, [ 1 ]),
+
+        function(c43, [ 0 ]),
+
+        function(c44, [ 2 ]),
+
+        function(c45, [ 1 ]),
+
+        function(c46, [ 0 ]),
+
+        function(c47, [ 1 ]),
+
+        function(c48, [ 2 ]),
+
+        function(c49, [ 0 ]),
+
+        function(c50, [ 1 ]),
+
+        function(c51, [ 0 ]),
+
+        function(c52, [ 1 ]),
+
+        function(c53, [ 0 ]),
+
+        function(c54, [ 2 ]),
+
+        function(c55, [ 0 ]),
+
+        function(c56, [ 1 ]),
+
+        function(c57, [ 0 ]),
+
+        function(c58, [ 1 ]),
+
+        function(c59, [ 0 ]),
+
+        function(c60, [ 1 ]),
+
+        function(c61, [ 1 ]),
+
+        function(c62, [ 0 ]),
+
+        function(c63, [ 0 ]),
+
+        function(c64, [ 1 ]),
+
+        function(c65, [ 0 ]),
+
+        function(c66, [ 2 ]),
+
+        function(c67, [ 1 ]),
+
+        function(c68, [ 0 ]),
+
+        function(c69, [ 1 ]),
+
+        function(c70, [ 2 ]),
+
+        function(c71, [ 0 ]),
+
+        function(c72, [ 1 ]),
+
+        function(c73, [ 0 ]),
+
+        function(c74, [ 2 ]),
+
+        function(c75, [ 2 ]),
+
+        function(c76, [ 0 ]),
+
+        function(c77, [ 0 ]),
+
+        function(c78, [ 1 ]),
+
+        function(c79, [ 0 ]),
+
+        function(c80, [ 1 ]),
+
+        function(c81, [ 0 ]),
+
+        function(c82, [ 1 ]),
+
+        function(c83, [ 0 ]),
+
+        function(c84, [ 1 ]),
+
+        function(c85, [ 2 ]),
+
+        function(c86, [ 0 ]),
+
+        function(c87, [ 2 ]),
+
+        function(c88, [ 1 ]),
+
+        function(c89, [ 0 ]),
+
+        function(c90, [ 1 ]),
+
+        function(c91, [ 2 ]),
+
+        function(c92, [ 0 ]),
+
+        function(c93, [ 2 ]),
+
+        function(c94, [ 1 ]),
+
+        function(c95, [ 1 ]),
+
+        function(c96, [ 0 ]),
+
+        function(c97, [ 1 ]),
+
+        function(c98, [ 0 ]),
+
+        function(c99, [ 0 ]),
+
+        function(c100, [ 1 ]),
+
+        function(c101, [ 0 ]),
+
+        function(c102, [ 1 ]),
+
+        function(EndOf(_), [ 0, 0, 0 ]),
+
+        function(StartOf(_), [ 0, 0, 0 ]),
+
+        function(f1(_), [ 0, 0, 0 ]),
+
+        function(f2(_), [ 0, 0, 0 ]),
+
+        function(f3(_), [ 2, 0, 1 ]),
+
+        function(f4(_), [ 0, 0, 0 ]),
+
+        function(f14(_), [ 0, 0, 0 ]),
+
+        function(f20(_), [ 0, 0, 0 ]),
+
+        function(f21(_), [ 0, 0, 2 ]),
+
+        function(f22(_), [ 1, 0, 1 ]),
+
+        function(f23(_), [ 0, 0, 0 ]),
+
+        function(f26(_), [ 0, 0, 0 ]),
+
+        function(f27(_), [ 0, 0, 0 ]),
+
+        function(f28(_), [ 1, 0, 0 ]),
+
+        function(f5(_,_), [
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0 ]),
+
+        function(f7(_,_), [
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0 ]),
+
+        function(f11(_,_), [
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0 ]),
+
+        function(f12(_,_), [
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0 ]),
+
+        function(f13(_,_), [
+			   0, 1, 0,
+			   0, 0, 0,
+			   0, 0, 0 ]),
+
+        function(f16(_,_), [
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0 ]),
+
+        function(f6(_,_,_), [
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0 ]),
+
+        function(f8(_,_,_), [
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0 ]),
+
+        function(f9(_,_,_), [
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0 ]),
+
+        function(f10(_,_,_), [
+			   0, 1, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   1, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0 ]),
+
+        function(f15(_,_,_), [
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0 ]),
+
+        function(f19(_,_,_), [
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0 ]),
+
+        function(f24(_,_,_), [
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0 ]),
+
+        function(f25(_,_,_), [
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0 ]),
+
+        function(f17(_,_,_,_), [
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0 ]),
+
+        function(f18(_,_,_,_), [
+			   0, 0, 0,
+			   0, 2, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 1, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0 ]),
+
+        relation(AQ(_), [ 1, 0, 0 ]),
+
+        relation(CN(_), [ 1, 0, 1 ]),
+
+        relation(CapabReq(_), [ 1, 0, 0 ]),
+
+        relation(Capability(_), [ 1, 0, 1 ]),
+
+        relation(DS(_), [ 1, 0, 1 ]),
+
+        relation(FnctEng(_), [ 1, 0, 0 ]),
+
+        relation(MethodEng(_), [ 1, 0, 0 ]),
+
+        relation(NASO(_), [ 1, 0, 1 ]),
+
+        relation(PED(_), [ 1, 0, 0 ]),
+
+        relation(PQ(_), [ 1, 0, 1 ]),
+
+        relation(Plan(_), [ 1, 0, 1 ]),
+
+        relation(PrcPlan(_), [ 1, 0, 1 ]),
+
+        relation(ST(_), [ 1, 0, 0 ]),
+
+        relation(StateDescr(_), [ 0, 1, 0 ]),
+
+        relation(TechSpec(_), [ 1, 0, 1 ]),
+
+        relation(CP(_,_), [
+			   1, 1, 0,
+			   1, 0, 1,
+			   1, 0, 1 ]),
+
+        relation(DF(_,_), [
+			   1, 0, 0,
+			   0, 0, 0,
+			   1, 0, 0 ]),
+
+        relation(US(_,_), [
+			   1, 0, 1,
+			   0, 0, 0,
+			   1, 0, 0 ]),
+
+        relation(goalForAgents(_,_), [
+			   0, 1, 0,
+			   1, 0, 0,
+			   0, 0, 0 ]),
+
+        relation(hasCapabReq(_,_), [
+			   1, 0, 0,
+			   1, 0, 0,
+			   1, 0, 0 ]),
+
+        relation(hasGoal(_,_), [
+			   0, 1, 0,
+			   0, 0, 0,
+			   0, 1, 0 ]),
+
+        relation(hasInputReq(_,_), [
+			   1, 0, 0,
+			   1, 0, 0,
+			   1, 0, 0 ]),
+
+        relation(hasReq(_,_), [
+			   1, 1, 0,
+			   1, 0, 0,
+			   1, 0, 0 ]),
+
+        relation(occOf(_,_), [
+			   0, 1, 0,
+			   1, 0, 0,
+			   0, 0, 0 ]),
+
+        relation(CF(_,_,_), [
+			   1, 1, 0,
+			   1, 0, 1,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   1, 0, 0,
+			   1, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0 ]),
+
+        relation(I(_,_,_), [
+			   0, 1, 0,
+			   0, 0, 1,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0 ]),
+
+        relation(PC(_,_,_), [
+			   0, 1, 0,
+			   0, 1, 1,
+			   0, 0, 0,
+			   1, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   1, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0 ]),
+
+        relation(actualResFor(_,_,_), [
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 1, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0 ]),
+
+        relation(hasOutputReq(_,_,_), [
+			   0, 1, 0,
+			   0, 0, 0,
+			   0, 1, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 1, 0 ]),
+
+        relation(resourceFor(_,_,_), [
+			   0, 1, 0,
+			   0, 0, 0,
+			   0, 1, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0,
+			   0, 0, 0 ])
+]).
+
+============================== end of model ==========================
+
+============================== STATISTICS ============================
+
+For domain size 3.
+
+Current CPU time: 0.00 seconds (total CPU time: 0.02 seconds).
+Ground clauses: seen=2418, kept=2418.
+Selections=615, assignments=669, propagations=263, current_models=1.
+Rewrite_terms=4300, rewrite_bools=3768, indexes=846.
+Rules_from_neg_clauses=41, cross_offs=144.
+
+============================== end of statistics =====================
+
+------ process 747 exit (max_models) ------
+
+User_CPU=0.02, System_CPU=0.01, Wall_clock=0.
+
+Exiting with 1 model.
+
+Process 747 exit (max_models) Wed May  3 16:56:23 2023
+The process finished Wed May  3 16:56:23 2023
+
+========================== MACLEOD SUMMARY ===========================
+reasoner: /home/user/Downloads/mace4
+status: MODEL
+execution finished: Wed May 03 16:56:25 2023
+total CPU time used: 0
+The command was "/home/user/Downloads/mace4 -v0 -t300 -s60 -n2 -N40 -f /home/user/Downloads/macleod/conversions/test_nontrivial.p9"
+============================ end of footer ===========================
