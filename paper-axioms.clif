@@ -57,8 +57,8 @@
     (CP y x)                        
     (forall (o)(exists (s p)
       (if (occOf o x)(and (CF p y (EndOf o))
-        (CF s z (EndOf o)
-        PC p s (EndOf o)))))))))
+        (CF s z (EndOf o))
+        (PC p s (EndOf o)))))))))
 
 (cl-comment 'Df7: A process plan a is a plan that has some input requirement y, some capability requirement v, and some output z at some state w')
 (forall (a)
@@ -74,12 +74,16 @@
     (exists (x y)(and (hasCapabReq a x)
       (CF y x t)
       (I y r t))))))
+      
+(cl-comment 'Ax5: An actual resource for a process plan at some time is a resource for that plan at that very time')
+(forall (x y t)
+	(if (actualResFor x y t)(resourceFor x y t)))
 
-(cl-comment 'Ax5: Capabilities are DOLCE physical or abstract qualities')
+(cl-comment 'Ax6: Capabilities are DOLCE physical or abstract qualities')
 (forall (x)
 	(if (Capability x)(or (PQ x)(AQ x))))
 
-(cl-comment 'Ax6: Plans, technical specification, and capability requirements are descriptions; engineering methods are plans; descriptions are non-agentive social objects; process plans are plans; engineering functions are concepts')
+(cl-comment 'Ax7: Plans, technical specification, and capability requirements are descriptions; engineering methods are plans; descriptions are non-agentive social objects; process plans are plans; engineering functions are concepts')
 (forall (x)
   (and (if (or (Plan x)(TechSpec x)(CapabReq x))(DS x))
   (if (DS x)(NASO x))
@@ -87,22 +91,18 @@
   (if (PrcPlan x)(Plan x))
   (if (FnctEng x)(CN x))))
 
-(cl-comment 'Ax7: Each engineering function is defined by an engineering method')
+(cl-comment 'Ax8: Each engineering function is defined by an engineering method')
 (forall (x)
 	(if (FnctEng x)(exists (y)
     (and (MethodEng y)
     (DF x y)))))
 
-(cl-comment 'Ax8: Each engineering method makes use of some engineering function')
+(cl-comment 'Ax9: Each engineering method makes use of some engineering function')
 (forall (x)
 	(if (MethodEng x)(exists (y)
     (and (FnctEng y)
     (US x y)))))
 
-(cl-comment 'Ax9: Engineering methods have goals')
+(cl-comment 'Ax10: Engineering methods have goals')
 (forall (x)
 	(if (MethodEng x)(exists (y)(hasGoal x y))))
-
-(cl-comment 'Ax10: An actual resource for a process plan at some time is a resource for that plan at that very time')
-(forall (x y t)
-	(if (actualResFor x y t)(resourceFor x y t)))
