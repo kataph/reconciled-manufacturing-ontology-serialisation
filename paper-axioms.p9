@@ -2,7 +2,7 @@ formulas(sos).
 (all x all y  (US(x,y) -> (CN(x) & DS(y)))).
 (all x all y  (DF(x,y) -> US(x,y))).
 (all x  (DS(x) -> (exists y  US(y,x)))).
-(all x  (CN(x) -> (exists y  (DF(x,y) & (all z  (DF(x,z) -> =(x,z))))))).
+(all x  (CN(x) -> (exists y  (DF(x,y) & (all z  (DF(x,z) -> =(y,z))))))).
 (all x  (StateDescr(x) <-> (all y all t  (CF(y,x,t) -> ST(y))))).
 (all x all y  (hasGoal(x,y) <-> (Plan(x) & StateDescr(y) & CP(y,x) & (exists z  goalForAgents(y,z)) & (all o  (exists s  (occOf(o,x) -> CF(s,y,EndOf(o)))))))).
 (all x all y  (hasCapabReq(x,y) <-> (hasReq(x,y) & (all z all t  (CF(z,y,t) -> Capability(z))) & (all o  (occOf(o,x) -> (exists w exists z exists t  (PC(w,o,t) & I(z,w,t) & CF(z,y,t)))))))).
