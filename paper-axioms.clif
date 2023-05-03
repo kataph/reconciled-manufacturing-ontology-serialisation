@@ -15,7 +15,7 @@
 (cl-comment 'Ax4: each concept is defined by an unique description')
 (forall (x)
   (if (CN x)(exists (y) (and (DF x y)(forall (z)
-    (if (DF x z)(= x z)))))))
+    (if (DF x z)(= y z)))))))
 
 (cl-comment 'Df1: State descriptions are descriptions that are satisfied by states only')
 (forall (x)
