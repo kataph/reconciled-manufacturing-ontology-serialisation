@@ -1,0 +1,20 @@
+formulas(sos).
+(all x all y  (US(x,y) -> (CN(x) & DS(y)))).
+(all x all y  (DF(x,y) -> US(x,y))).
+(all x  (DS(x) -> (exists y  US(y,x)))).
+(all x  (CN(x) -> (exists y  (DF(x,y) & (all z  (DF(x,z) -> =(x,z))))))).
+(all x  (StateDescr(x) <-> (all y all t  (CF(y,x,t) -> ST(y))))).
+(all x all y  (hasGoal(x,y) <-> (Plan(x) & StateDescr(y) & CP(y,x) & (exists z  goalForAgents(y,z)) & (all o  (exists s  (occOf(o,x) -> CF(s,y,EndOf(o)))))))).
+(all x all y  (hasCapabReq(x,y) <-> (hasReq(x,y) & (all z all t  (CF(z,y,t) -> Capability(z))) & (all o  (occOf(o,x) -> (exists w exists z exists t  (PC(w,o,t) & I(z,w,t) & CF(z,y,t)))))))).
+(all x  (CapabReq(x) <-> (exists y  hasCapabReq(y,x)))).
+(all x all y  (hasInputReq(x,y) <-> (hasReq(x,y) & TechSpec(y) & (all o  (exists z  (occOf(o,x) -> CF(z,y,StartOf(o)))))))).
+(all x all y all z  (hasOutputReq(x,y,z) <-> (hasGoal(x,z) & TechSpec(y) & CP(y,x) & (all o  (exists s exists p  (occOf(o,x) -> (CF(p,y,EndOf(o)) & CF(s,z,EndOf(o)) & PC(p,s,EndOf(o))))))))).
+(all a  (PrcPlan(a) <-> (exists y exists z exists w exists v  (hasInputReq(a,y) & hasCapabReq(a,v) & hasOutputReq(a,z,w))))).
+(all r all a all t  (resourceFor(r,a,t) <-> (PED(r) & PrcPlan(a) & (exists x exists y  (hasCapabReq(a,x) & CF(y,x,t) & I(y,r,t)))))).
+(all x all y all t  (actualResFor(x,y,t) -> resourceFor(x,y,t))).
+(all x  (Capability(x) -> (PQ(x) | AQ(x)))).
+(all x  (((Plan(x) | TechSpec(x) | CapabReq(x)) -> DS(x)) & (DS(x) -> NASO(x)) & (MethodEng(x) -> Plan(x)) & (PrcPlan(x) -> Plan(x)) & (FnctEng(x) -> CN(x)))).
+(all x  (FnctEng(x) -> (exists y  (MethodEng(y) & DF(x,y))))).
+(all x  (MethodEng(x) -> (exists y  (FnctEng(y) & US(x,y))))).
+(all x  (MethodEng(x) -> (exists y  hasGoal(x,y)))).
+end_of_list.
