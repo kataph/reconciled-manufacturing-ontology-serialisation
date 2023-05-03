@@ -1,0 +1,18 @@
+fof(axiom10, axiom, (! [X] : ! [Y] :  ((us(X,Y) => (cn(X) & ds(Y)))))).
+fof(axiom20, axiom, (! [X] : ! [Y] :  ((df(X,Y) => us(X,Y))))).
+fof(axiom30, axiom, (! [X] :  ((ds(X) => (? [Y] :  (us(Y,X))))))).
+fof(axiom40, axiom, (! [X] :  ((cn(X) => (? [Y] :  ((df(X,Y) & (! [Z] :  ((df(X,Z) => X=Z)))))))))).
+fof(axiom50, axiom, (! [X] :  ((statedescr(X) <=> (! [Y] : ! [T] :  ((cf(Y,X,T) => st(Y)))))))).
+fof(axiom60, axiom, (! [X] : ! [Y] :  ((hasgoal(X,Y) <=> (plan(X) & statedescr(Y) & cp(Y,X) & (? [Z] :  (goalforagents(Y,Z))) & (! [O] :  ((? [S] :  ((occof(O,X) => cf(S,Y,endof(O)))))))))))).
+fof(axiom70, axiom, (! [X] : ! [Y] :  ((hascapabreq(X,Y) <=> (hasreq(X,Y) & (! [Z] : ! [T] :  ((cf(Z,Y,T) => capability(Z)))) & (! [O] :  ((occof(O,X) => (? [W] : ? [Z] : ? [T] :  ((pc(W,O,T) & i(Z,W,T) & cf(Z,Y,T)))))))))))).
+fof(axiom80, axiom, (! [X] :  ((capabreq(X) <=> (? [Y] :  (hascapabreq(Y,X))))))).
+fof(axiom90, axiom, (! [X] : ! [Y] :  ((hasinputreq(X,Y) <=> (hasreq(X,Y) & techspec(Y) & (! [O] :  ((? [Z] :  ((occof(O,X) => cf(Z,Y,startof(O)))))))))))).
+fof(axiom100, axiom, (! [X] : ! [Y] : ! [Z] :  ((hasoutputreq(X,Y,Z) <=> (hasgoal(X,Z) & techspec(Y) & cp(Y,X) & (! [O] :  ((? [S] : ? [P] :  ((occof(O,X) => (cf(P,Y,endof(O)) & cf(S,Z,endof(O),pc,P,S,endof(O))))))))))))).
+fof(axiom110, axiom, (! [A] :  ((prcplan(A) <=> (? [Y] : ? [Z] : ? [W] : ? [V] :  ((hasinputreq(A,Y) & hascapabreq(A,V) & hasoutputreq(A,Z,W)))))))).
+fof(axiom120, axiom, (! [R] : ! [A] : ! [T] :  ((resourcefor(R,A,T) <=> (ped(R) & prcplan(A) & (? [X] : ? [Y] :  ((hascapabreq(A,X) & cf(Y,X,T) & i(Y,R,T))))))))).
+fof(axiom130, axiom, (! [X] :  ((capability(X) => (pq(X) | aq(X)))))).
+fof(axiom140, axiom, (! [X] :  ((((plan(X) | techspec(X) | capabreq(X)) => ds(X)) & (ds(X) => naso(X)) & (methodeng(X) => plan(X)) & (prcplan(X) => plan(X)) & (fncteng(X) => cn(X)))))).
+fof(axiom150, axiom, (! [X] :  ((fncteng(X) => (? [Y] :  ((methodeng(Y) & df(X,Y)))))))).
+fof(axiom160, axiom, (! [X] :  ((methodeng(X) => (? [Y] :  ((fncteng(Y) & us(X,Y)))))))).
+fof(axiom170, axiom, (! [X] :  ((methodeng(X) => (? [Y] :  (hasgoal(X,Y))))))).
+fof(axiom180, axiom, (! [X] : ! [Y] : ! [T] :  ((actualresfor(X,Y,T) => resourcefor(X,Y,T))))).
