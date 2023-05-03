@@ -1,7 +1,7 @@
 fof(axiom10, axiom, (! [X] : ! [Y] :  ((us(X,Y) => (cn(X) & ds(Y)))))).
 fof(axiom20, axiom, (! [X] : ! [Y] :  ((df(X,Y) => us(X,Y))))).
 fof(axiom30, axiom, (! [X] :  ((ds(X) => (? [Y] :  (us(Y,X))))))).
-fof(axiom40, axiom, (! [X] :  ((cn(X) => (? [Y] :  ((df(X,Y) & (! [Z] :  ((df(X,Z) => X=Z)))))))))).
+fof(axiom40, axiom, (! [X] :  ((cn(X) => (? [Y] :  ((df(X,Y) & (! [Z] :  ((df(X,Z) => Y=Z)))))))))).
 fof(axiom50, axiom, (! [X] :  ((statedescr(X) <=> (! [Y] : ! [T] :  ((cf(Y,X,T) => st(Y)))))))).
 fof(axiom60, axiom, (! [X] : ! [Y] :  ((hasgoal(X,Y) <=> (plan(X) & statedescr(Y) & cp(Y,X) & (? [Z] :  (goalforagents(Y,Z))) & (! [O] :  ((? [S] :  ((occof(O,X) => cf(S,Y,endof(O)))))))))))).
 fof(axiom70, axiom, (! [X] : ! [Y] :  ((hascapabreq(X,Y) <=> (hasreq(X,Y) & (! [Z] : ! [T] :  ((cf(Z,Y,T) => capability(Z)))) & (! [O] :  ((occof(O,X) => (? [W] : ? [Z] : ? [T] :  ((pc(W,O,T) & i(Z,W,T) & cf(Z,Y,T)))))))))))).
